@@ -15,6 +15,7 @@ def wait_on_key_and_map(key_map):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
+                print("Ornithology terminated")
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 try:
@@ -54,7 +55,7 @@ key_map_again = {
     pygame.K_ESCAPE : False
 }
 
-print("Start of Ornithologie")
+print("Start of Ornithology")
 bird_repository = BirdRepository("birds.csv")
 image_repository = ImageRepository("images")
 gui_processor = GUIProcessor(display_width, display_height, no_answers)
@@ -105,5 +106,6 @@ while again:
     print("again = ", again)
 
 pygame.quit()
+print("Ornithology terminated")
 sys.exit()
 
