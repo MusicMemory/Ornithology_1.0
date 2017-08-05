@@ -23,7 +23,7 @@ class Game:
                     self.__questions[q] = bird_id_candidate
                     break;
                 counter +=1
-            # Wenn weniger Vögel da sind als gebraucht, wird das hier zu einer Exception führen:
+            # Wenn weniger Vögel da sind als gebraucht, würde das hier zu einer Exception führen:
             if (counter >= MAX_ITERATIONS):
                 raise Exception("Probably there are not enough bird present with difficulty " + str(difficulty))
             # Liste __answers mit Zahlen (ID) füllen ohne Wiederholung
@@ -45,17 +45,24 @@ class Game:
             pos_right_answer = r.randint(0, no_answers - 1)
             answer_list[pos_right_answer] = self.__questions[q]
             self.__answers[q] = answer_list
-        print(self.__questions)
-        print(self.__answers)
+
+        # Debug-Ausgabe der gewählen zu erratenden Bilder und der möglichen Antworten
+        image_cnt = 0
+        for answer_set in self.__answers:
+            print(str(image_cnt+1) + ". Image", self.__questions[image_cnt], "-> Answers", answer_set)
+            image_cnt += 1
 
     def get_question(self, q):
         return self.__questions[q], self.__answers[q]
 
     def is_correct(self, q, a):
-        return self.__questions[q] == self.__answers[q][a]
+        correct = self.__questions[q] == self.__answers[q][a]
+        print("Answer: ", a, ", correct:", correct)
+        return correct
 
     def add_points(self, points):
         self.__points += points
+        print("Points: ", self.__points)
 
     def get_points(self):
         return self.__points
